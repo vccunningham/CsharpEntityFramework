@@ -12,6 +12,9 @@ namespace CSharpEF_Practice {
         public string Name { get; set; }
         public double Price { get; set; }
 
+        public List<OrderLine> Orderlines { get; set; }
+
+
         public Product() { }
     }
     

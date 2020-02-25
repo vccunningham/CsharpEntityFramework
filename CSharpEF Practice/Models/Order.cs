@@ -16,6 +16,11 @@ namespace CSharpEF_Practice.Models {
         public int CustomerId { get; set; }
         public string Customer { get; set; }
 
+        public override string ToString() => $"{Id}/{Description}/{Amount}/{CustomerId}/{Customer}";
+
+
+        
+
         public Order() { }
 
     }

@@ -11,11 +11,13 @@ namespace CsharpEntityFramework {
     class Program {
         static void Main(string[] args) {
             var context = new AppDbContext();
+            //AddOrderLine(context);
+            GetOrderLines(context);
 
-            Console.WriteLine($"Avg price is {context.Products.Average(x => x.Price)}");
+            //Console.WriteLine($"Avg price is {context.Products.Average(x => x.Price)}");
 
-            var top2 = context.Products.Where(x => x.Id > 7).ToList();
-            var actcust = context.Customers.Where(x => x.Active == true).ToList();
+            //var top2 = context.Products.Where(x => x.Id > 7).ToList();
+            //var actcust = context.Customers.Where(x => x.Active == true).ToList();
 
             //UpdateCustomerSales(context);
             //AddCustomer(context);
@@ -25,6 +27,38 @@ namespace CsharpEntityFramework {
             //DeleteCustomer(context);
             //GetAllCustomers(context);
             //AddProducts(context);
+        }
+        static void RecalcOrderAmount(int orderId, AppDbContext context) {
+            var order = context.Orders.Find(orderId);
+            var total = order.OrderLine.Sum(ol => ol.Quantity * ol.Product.Price);
+            order.Amount = total;
+            var rc = context.SaveChanges();
+            if (rc != 1) throw new Exception("Order update of amount failed");
+        }
+
+        static void RecalcOrderAmounts(AppDbContext context) {
+            var orderIds = context.Orders.Select(x => x.Id).ToArray();
+            foreach(var orderId in orderIds) {
+                RecalcOrderAmount(orderId, context);
+            }
+        }
+
+
+        static void GetOrderLines(AppDbContext context) {
+            var orderlines = context.OrderLines.ToList();
+            orderlines.ForEach(line => 
+                Console.WriteLine($"{line.Quantity}/{line.Order.Description}/{line.Product.Name}"));
+
+        }
+        static void AddOrderLine(AppDbContext context) {
+            var order = context.Orders.SingleOrDefault(o => o.Description == "Order1");
+            var product = context.Products.SingleOrDefault(p => p.Code == "Echo");
+            var orderline = new OrderLine {
+                Id = 0, ProductId = product.Id, OrderId = order.Id, Quantity = 3
+            };
+            context.OrderLines.Add(orderline);
+            var rowsAffected = context.SaveChanges();
+            if(rowsAffected != 1) throw new Exception("Orderline added");
         }
         static void UpdateCustomerSales(AppDbContext context) {
             var CustOrderJoin = from c in context.Customers
@@ -38,11 +72,11 @@ namespace CsharpEntityFramework {
 
         }
         static void AddOrders(AppDbContext context) {
-            var order1 = new Order { Id = 0, Description = "Order1", Amount = 200, Customer = "Nike" };
-            var order2 = new Order { Id = 0, Description = "Order2", Amount = 600, Customer = "Yahoo" };
-            var order3 = new Order { Id = 0, Description = "Order3", Amount = 100, Customer = "Footlocker" };
-            var order4 = new Order { Id = 0, Description = "Order4", Amount = 400, Customer = "DollarGeneral" };
-            var order5 = new Order { Id = 0, Description = "Order5", Amount = 500, Customer = "BestBuy" };
+            var order1 = new Order { Id = 0, Description = "Order1", Amount = 200, CustomerId = 1, Customer = "Nike" };
+            var order2 = new Order { Id = 0, Description = "Order2", Amount = 600, CustomerId = 2, Customer = "Yahoo" };
+            var order3 = new Order { Id = 0, Description = "Order3", Amount = 100, CustomerId = 3, Customer = "Footlocker" };
+            var order4 = new Order { Id = 0, Description = "Order4", Amount = 400, CustomerId = 4, Customer = "DollarGeneral" };
+            var order5 = new Order { Id = 0, Description = "Order5", Amount = 500, CustomerId = 5, Customer = "BestBuy" };
 
             context.AddRange(order1, order2, order3, order4, order5);
             var rowsAffected = context.SaveChanges();

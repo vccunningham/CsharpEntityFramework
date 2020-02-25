@@ -20,7 +20,7 @@ namespace PrsEfTutorialLibraryModels {
 
         public Customer() { }
 
-       
+    
         
     }
     
