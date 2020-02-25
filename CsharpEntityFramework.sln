@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrsEfTutorialConsole", "CsharpEntityFramework\PrsEfTutorialConsole.csproj", "{0D4D9E5C-1EC9-42D6-A602-7B0D158D074F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrsEfTutorialLibrary", "CSharpEF Practice\PrsEfTutorialLibrary.csproj", "{AE14217B-B2B1-45D1-BC09-9D51E3F2FE49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D4D9E5C-1EC9-42D6-A602-7B0D158D074F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D4D9E5C-1EC9-42D6-A602-7B0D158D074F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D4D9E5C-1EC9-42D6-A602-7B0D158D074F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D4D9E5C-1EC9-42D6-A602-7B0D158D074F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE14217B-B2B1-45D1-BC09-9D51E3F2FE49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE14217B-B2B1-45D1-BC09-9D51E3F2FE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE14217B-B2B1-45D1-BC09-9D51E3F2FE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE14217B-B2B1-45D1-BC09-9D51E3F2FE49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AABA7A06-E17E-4F02-8B10-3809DAA0CB42}
+	EndGlobalSection
+EndGlobal
